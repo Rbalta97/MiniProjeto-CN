@@ -22,15 +22,15 @@ jobs:
     - name: Log in to registry
       uses: docker/login-action@v2
       with:
-        registry: https://vocalscriptacr.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_52457536263b4b7d9f6a1c744891fe3a }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_aad0fb3c964b4b679a346d23fbdd1446 }}
+        registry: https://index.docker.io/v1/
+        username: ${{ secrets.AzureAppService_ContainerUsername_cf5e09b31e734c9493014d2b4a8b55ae }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_6423d1cd0734416ebd89eeb693b1b122 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: vocalscriptacr.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_52457536263b4b7d9f6a1c744891fe3a }}/vocalscript-app:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_cf5e09b31e734c9493014d2b4a8b55ae }}/baltazar97/vocalscript-app:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'vocalscript-app'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_85ce7eec89f94138960e4aa06a3e9b38 }}
-        images: 'vocalscriptacr.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_52457536263b4b7d9f6a1c744891fe3a }}/vocalscript-app:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_133c2e327c60466f9bb451eac6479c6e }}
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_cf5e09b31e734c9493014d2b4a8b55ae }}/baltazar97/vocalscript-app:${{ github.sha }}'

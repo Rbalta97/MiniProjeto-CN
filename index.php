@@ -243,7 +243,7 @@ function get_transcricoes($audio_url)
 
                 if (upload_para_blob($connectionString, "audios", $blob_name, $tmp_name)) {
                     echo "<div class='success'>✅ Ficheiro '$blob_name' processado com sucesso!</div>";
-                    $audio_url = "https://<sua-conta>.blob.core.windows.net/audios/$blob_name";
+                    $audio_url = "https://vocalstoragedb.blob.core.windows.net/audios/$blob_name";
                     $transcricao = get_transcricoes($audio_url);
                     // Exibir transcrição
                 } else {
